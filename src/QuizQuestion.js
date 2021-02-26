@@ -15,7 +15,7 @@ export default function QuizQuestion({
 }) {
   let intervalID;
 
-  const [possibleAnswers, setPossibleAnswers] = useState(answers);
+  const [possibleAnswers] = useState(answers);
   const [secondsLeft, setSecondsLeft] = useState(15);
 
   function checkAnswer(e) {

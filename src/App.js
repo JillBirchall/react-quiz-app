@@ -15,11 +15,12 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0);
 
-  //Set the current question and isQuizInProgress flag once the questions have been loaded.
+  //Set the current question number score and isQuizInProgress flag once the questions have been loaded.
   useEffect(() => {
     if (questions.length === NUMBER_OF_QUESTIONS) {
       setIsQuizInProgress(true);
-      setCurrentQuestion(questions[currentQuestionNumber]);
+      setCurrentQuestionNumber(0);
+      setScore(0); //resets the score
     }
   }, [questions]);
 
@@ -29,7 +30,9 @@ function App() {
   }, [currentQuestionNumber]);
 
   useEffect(() => {
-    if (isQuizOver) setIsQuizInProgress(false);
+    if (isQuizOver) {
+      setIsQuizInProgress(false);
+    }
   }, [isQuizOver]);
 
   async function getQuestions(categoryId, difficulty) {
@@ -84,6 +87,10 @@ function App() {
     return txt.value;
   }
 
+  function playAgain() {
+    setIsQuizOver(false);
+  }
+
   return (
     <div className="container">
       <div className="quiz-box">
@@ -102,10 +109,13 @@ function App() {
             numberOfQuestions={NUMBER_OF_QUESTIONS}
           />
         )}
-        {isQuizOver && <FinalScore score={score} />}
+        {isQuizOver && <FinalScore score={score} playAgain={playAgain} />}
       </div>
     </div>
   );
 }
 
 export default App;
+
+//Need to make the answer button red or green depending on whether or not the answer is correct
+//Perhaps try managing the state in useReducer instead?
