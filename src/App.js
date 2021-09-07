@@ -12,8 +12,7 @@ function App() {
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
   const [isQuizOver, setIsQuizOver] = useState(false);
   const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState({});
-  const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0);
+  const [currentQuestionNumber, setCurrentQuestionNumber] = useState();
 
   //Set the current question number score and isQuizInProgress flag once the questions have been loaded.
   useEffect(() => {
@@ -23,11 +22,6 @@ function App() {
       setScore(0); //resets the score
     }
   }, [questions]);
-
-  //Update the current question each time the question number changes
-  useEffect(() => {
-    setCurrentQuestion(questions[currentQuestionNumber]);
-  }, [currentQuestionNumber]);
 
   useEffect(() => {
     if (isQuizOver) {
@@ -41,23 +35,23 @@ function App() {
         amount: NUMBER_OF_QUESTIONS,
         category: categoryId,
         difficulty: difficulty,
-        type: "multiple",
+        // type: "multiple",
       },
     });
-    setQuestions(
-      res.data.results.map((result, index) => {
-        let allAnswers = [
-          ...result.incorrect_answers.map((answer) => decodeHTML(answer)),
-          decodeHTML(result.correct_answer),
-        ];
-        return {
-          id: `${index}-${Date.now()}`,
-          question: decodeHTML(result.question),
-          answers: allAnswers.sort(() => Math.random() - 0.5),
-          correctAnswer: decodeHTML(result.correct_answer),
-        };
-      })
-    );
+    let retrievedQuestions = res.data.results.map((result, index) => {
+      let allAnswers = [
+        ...result.incorrect_answers.map((answer) => decodeHTML(answer)),
+        decodeHTML(result.correct_answer),
+      ];
+      return {
+        id: `${index}-${Date.now()}`,
+        question: decodeHTML(result.question),
+        answers: allAnswers.sort(() => Math.random() - 0.5),
+        correctAnswer: decodeHTML(result.correct_answer),
+      };
+    });
+    console.log(retrievedQuestions);
+    setQuestions(retrievedQuestions);
   }
 
   function updateScore(timeRemaining) {
@@ -99,9 +93,9 @@ function App() {
         )}
         {isQuizInProgress && (
           <QuizQuestion
-            question={currentQuestion.question}
-            answers={currentQuestion.answers}
-            correctAnswer={currentQuestion.correctAnswer}
+            question={questions[currentQuestionNumber].question}
+            answers={questions[currentQuestionNumber].answers}
+            correctAnswer={questions[currentQuestionNumber].correctAnswer}
             score={score}
             updateScore={updateScore}
             questionNumber={currentQuestionNumber + 1}
@@ -119,3 +113,5 @@ export default App;
 
 //Need to make the answer button red or green depending on whether or not the answer is correct
 //Perhaps try managing the state in useReducer instead?
+//Add a loader for when it is loading the categories, and the questions
+//Consider hard-coding categories instead of getting them from the API, as some categories do not have enough questions and will cause errors. Check which categories do  and don't work.

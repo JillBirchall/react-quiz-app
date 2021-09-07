@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import QuizProgress from "./QuizProgress";
 import ScoreDisplay from "./ScoreDisplay";
 import Timer from "./Timer";
@@ -13,35 +13,41 @@ export default function QuizQuestion({
   getNextQuestion,
   numberOfQuestions,
 }) {
-  let intervalID;
-
-  const [possibleAnswers] = useState(answers);
   const [secondsLeft, setSecondsLeft] = useState(15);
+  const [questionAnswered, setQuestionAnswered] = useState(false);
+
+  const intervalID = useRef(null);
 
   function checkAnswer(e) {
-    clearInterval(intervalID);
+    clearInterval(intervalID.current);
+    setQuestionAnswered(true);
     if (e.target.innerText === correctAnswer) {
       updateScore(secondsLeft);
     }
-    getNextQuestion();
-    setSecondsLeft(15);
+    setTimeout(() => {
+      setQuestionAnswered(false);
+      getNextQuestion();
+      setSecondsLeft(15);
+    }, 2000);
   }
 
   //Start the timer whenever the answers change
   useEffect(() => {
-    intervalID = setInterval(() => {
+    intervalID.current = setInterval(() => {
       setSecondsLeft((prevState) => prevState - 1);
     }, 1000);
-  }, [possibleAnswers]);
+    console.log("New Interval Set");
+  }, [answers]);
 
   //If the question hasn't been answered in the time, reset the timer and generate a new question
   useEffect(() => {
     if (secondsLeft < 0) {
-      clearInterval(intervalID);
+      clearInterval(intervalID.current);
       getNextQuestion();
       setSecondsLeft(15);
     }
-  }, [secondsLeft]);
+    console.log(intervalID.current);
+  }, [secondsLeft, getNextQuestion]);
 
   return (
     <div className="quiz-question">

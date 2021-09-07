@@ -11,7 +11,7 @@ export default function Timer({ secondsLeft }) {
     } else {
       setTimerColour("red");
     }
-  });
+  }, [secondsLeft]);
 
   return (
     <div className="timer" id="questionTimer">
