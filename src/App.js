@@ -3,25 +3,27 @@ import QuizForm from "./QuizForm";
 import React, { useState, useEffect } from "react";
 import QuizQuestion from "./QuizQuestion";
 import FinalScore from "./FinalScore";
+import Loader from "./Loader";
 import axios from "axios";
 
 function App() {
-  const NUMBER_OF_QUESTIONS = 20;
-
   const [score, setScore] = useState(0);
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
   const [isQuizOver, setIsQuizOver] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState();
+  const [numberOfQuestions, setNumberOfQuestions] = useState();
 
   //Set the current question number score and isQuizInProgress flag once the questions have been loaded.
   useEffect(() => {
-    if (questions.length === NUMBER_OF_QUESTIONS) {
+    if (questions.length === numberOfQuestions) {
+      console.log("Quiz Started");
       setIsQuizInProgress(true);
       setCurrentQuestionNumber(0);
       setScore(0); //resets the score
     }
-  }, [questions]);
+  }, [questions, numberOfQuestions]);
 
   useEffect(() => {
     if (isQuizOver) {
@@ -29,13 +31,14 @@ function App() {
     }
   }, [isQuizOver]);
 
-  async function getQuestions(categoryId, difficulty) {
+  async function getQuestions(categoryId, difficulty, questionsSelected) {
+    setIsLoading(true);
+    setNumberOfQuestions(questionsSelected);
     const res = await axios.get("https://opentdb.com/api.php", {
       params: {
-        amount: NUMBER_OF_QUESTIONS,
+        amount: questionsSelected,
         category: categoryId,
         difficulty: difficulty,
-        // type: "multiple",
       },
     });
     let retrievedQuestions = res.data.results.map((result, index) => {
@@ -50,8 +53,8 @@ function App() {
         correctAnswer: decodeHTML(result.correct_answer),
       };
     });
-    console.log(retrievedQuestions);
     setQuestions(retrievedQuestions);
+    setIsLoading(false);
   }
 
   function updateScore(timeRemaining) {
@@ -68,7 +71,7 @@ function App() {
   }
 
   function getNextQuestion() {
-    if (currentQuestionNumber < 19) {
+    if (currentQuestionNumber < numberOfQuestions - 1) {
       setCurrentQuestionNumber((prevQuestionNumber) => prevQuestionNumber + 1);
     } else {
       setIsQuizOver(true);
@@ -88,9 +91,10 @@ function App() {
   return (
     <div className="container">
       <div className="quiz-box">
-        {!isQuizInProgress && !isQuizOver && (
+        {!isQuizInProgress && !isQuizOver && !isLoading && (
           <QuizForm getQuestions={getQuestions} />
         )}
+        {isLoading && <Loader />}
         {isQuizInProgress && (
           <QuizQuestion
             question={questions[currentQuestionNumber].question}
@@ -100,7 +104,7 @@ function App() {
             updateScore={updateScore}
             questionNumber={currentQuestionNumber + 1}
             getNextQuestion={getNextQuestion}
-            numberOfQuestions={NUMBER_OF_QUESTIONS}
+            numberOfQuestions={numberOfQuestions}
           />
         )}
         {isQuizOver && <FinalScore score={score} playAgain={playAgain} />}
@@ -112,6 +116,4 @@ function App() {
 export default App;
 
 //Need to make the answer button red or green depending on whether or not the answer is correct
-//Perhaps try managing the state in useReducer instead?
 //Add a loader for when it is loading the categories, and the questions
-//Consider hard-coding categories instead of getting them from the API, as some categories do not have enough questions and will cause errors. Check which categories do  and don't work.

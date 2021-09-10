@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
+import AnswerButton from "./AnswerButton";
 import QuizProgress from "./QuizProgress";
 import ScoreDisplay from "./ScoreDisplay";
 import Timer from "./Timer";
@@ -14,18 +16,15 @@ export default function QuizQuestion({
   numberOfQuestions,
 }) {
   const [secondsLeft, setSecondsLeft] = useState(15);
-  const [questionAnswered, setQuestionAnswered] = useState(false);
 
   const intervalID = useRef(null);
 
-  function checkAnswer(e) {
+  function answerQuestion(isAnswerCorrect) {
     clearInterval(intervalID.current);
-    setQuestionAnswered(true);
-    if (e.target.innerText === correctAnswer) {
-      updateScore(secondsLeft);
-    }
+    // if (isAnswerCorrect) {
+    //   updateScore(secondsLeft);
+    // }
     setTimeout(() => {
-      setQuestionAnswered(false);
       getNextQuestion();
       setSecondsLeft(15);
     }, 2000);
@@ -36,7 +35,6 @@ export default function QuizQuestion({
     intervalID.current = setInterval(() => {
       setSecondsLeft((prevState) => prevState - 1);
     }, 1000);
-    console.log("New Interval Set");
   }, [answers]);
 
   //If the question hasn't been answered in the time, reset the timer and generate a new question
@@ -46,7 +44,6 @@ export default function QuizQuestion({
       getNextQuestion();
       setSecondsLeft(15);
     }
-    console.log(intervalID.current);
   }, [secondsLeft, getNextQuestion]);
 
   return (
@@ -62,15 +59,14 @@ export default function QuizQuestion({
       <h2 className="question-number">Question {questionNumber}</h2>
       <p className="question">{question}</p>
       <div className="answers">
-        {answers.map((answer, index) => {
+        {answers.map((answer) => {
           return (
-            <button
-              className="btn answer-btn"
-              key={index}
-              onClick={(e) => checkAnswer(e)}
-            >
-              {answer}
-            </button>
+            <AnswerButton
+              answer={answer}
+              key={uuidv4()}
+              isCorrectAnswer={correctAnswer === answer}
+              answerQuestion={answerQuestion}
+            />
           );
         })}
       </div>

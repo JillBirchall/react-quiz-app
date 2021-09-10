@@ -205,12 +205,12 @@ body {
   outline: none;
 }
 
-.answer-btn.correct:hover,
+.answer-btn.right:hover,
 .answer-btn.incorrect:hover {
   border-color: white;
 }
 
-.answer-btn.correct {
+.answer-btn.right {
   background-color: green;
   color: white;
 }
