@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { v4 as uuidv4 } from "uuid";
-import AnswerButton from "./AnswerButton";
+import Answers from "./Answers";
+import { useGlobalContext } from "./context";
 import QuizProgress from "./QuizProgress";
 import ScoreDisplay from "./ScoreDisplay";
 import Timer from "./Timer";
@@ -9,22 +9,22 @@ export default function QuizQuestion({
   question,
   answers,
   correctAnswer,
-  score,
-  updateScore,
   questionNumber,
   getNextQuestion,
   numberOfQuestions,
 }) {
   const [secondsLeft, setSecondsLeft] = useState(15);
 
+  const { updateScore } = useGlobalContext();
+
   const intervalID = useRef(null);
 
   function answerQuestion(isAnswerCorrect) {
     clearInterval(intervalID.current);
-    // if (isAnswerCorrect) {
-    //   updateScore(secondsLeft);
-    // }
     setTimeout(() => {
+      if (isAnswerCorrect) {
+        updateScore(secondsLeft);
+      }
       getNextQuestion();
       setSecondsLeft(15);
     }, 2000);
@@ -54,22 +54,16 @@ export default function QuizQuestion({
           numberOfQuestions={numberOfQuestions}
         />
         <Timer secondsLeft={secondsLeft} />
-        <ScoreDisplay score={score} />
+        <ScoreDisplay />
       </div>
       <h2 className="question-number">Question {questionNumber}</h2>
       <p className="question">{question}</p>
-      <div className="answers">
-        {answers.map((answer) => {
-          return (
-            <AnswerButton
-              answer={answer}
-              key={uuidv4()}
-              isCorrectAnswer={correctAnswer === answer}
-              answerQuestion={answerQuestion}
-            />
-          );
-        })}
-      </div>
+      <Answers
+        answers={answers}
+        correctAnswer={correctAnswer}
+        answerQuestion={answerQuestion}
+        secondsLeft={secondsLeft}
+      />
     </div>
   );
 }

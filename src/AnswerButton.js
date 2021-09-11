@@ -1,67 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 export default function AnswerButton({
   answer,
   isCorrectAnswer,
-  answerQuestion,
+  secondsLeft,
+  isQuestionAnswered,
+  selectAnswer,
+  isSelectedAnswer,
 }) {
-  const [selectedAnswer, setSelectedAnswer] = useState(false);
-
-  function checkAnswer() {
-    setSelectedAnswer(true);
-    console.log(isCorrectAnswer);
-    answerQuestion(isCorrectAnswer);
-  }
+  const answerButton = useRef();
+  const scoreIncrementDisplay = useRef();
+  const [scoreIncrement, setScoreIncrement] = useState(0);
 
   useEffect(() => {
-    console.log("Answer" + answer + " " + isCorrectAnswer);
+    if (isQuestionAnswered) {
+      if (isCorrectAnswer) {
+        answerButton.current.className = "btn answer-btn right";
+        if (isSelectedAnswer) {
+          setScoreIncrement(getScoreIncrement());
+          scoreIncrementDisplay.current.className = "score-increment";
+        }
+      } else {
+        if (isSelectedAnswer) {
+          answerButton.current.className = "btn answer-btn incorrect";
+        }
+      }
+    }
   }, []);
 
-  // return (
-  //   <button
-  //     className={`${
-  //       selectedAnswer
-  //         ?
-  //       isCorrectAnswer ? "btn answer-btn correct" : "btn answer-btn incorrect"
-  //       : "btn answer-btn"
-  //     }`}
-  //     onClick={() => checkAnswer()}
-  //   >
-  //     {answer}
-  //   </button>
-  // );
-  if (selectedAnswer) {
-    // return (
-    //   <button
-    //     className={`${
-    //       isCorrectAnswer ? "btn answer-btn right" : "btn answer-btn incorrect"
-    //     }`}
-    //     onClick={() => checkAnswer()}
-    //   >
-    //     {answer}
-    //   </button>
-    // );
-    if (isCorrectAnswer) {
-      return (
-        <button className="btn answer-btn right" onClick={() => checkAnswer()}>
-          {answer}
-        </button>
-      );
+  function getScoreIncrement() {
+    let score_increment;
+
+    if (secondsLeft > 10) {
+      score_increment = 30;
+    } else if (secondsLeft > 5) {
+      score_increment = 20;
     } else {
-      return (
-        <button
-          className="btn answer-btn incorrect"
-          onClick={() => checkAnswer()}
-        >
-          {answer}
-        </button>
-      );
+      score_increment = 10;
     }
-  } else {
-    return (
-      <button className="btn answer-btn" onClick={() => checkAnswer()}>
-        {answer}
-      </button>
-    );
+
+    return score_increment;
   }
+
+  function checkAnswer() {
+    if (isQuestionAnswered) return;
+    selectAnswer(answer, isCorrectAnswer);
+  }
+
+  return (
+    <button
+      ref={answerButton}
+      className="btn answer-btn"
+      onClick={() => checkAnswer()}
+    >
+      {answer}
+      <span ref={scoreIncrementDisplay} className="score-increment hide">
+        +{scoreIncrement}
+      </span>
+    </button>
+  );
+  // }
 }

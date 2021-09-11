@@ -5,9 +5,9 @@ import QuizQuestion from "./QuizQuestion";
 import FinalScore from "./FinalScore";
 import Loader from "./Loader";
 import axios from "axios";
+import { useGlobalContext } from "./context";
 
 function App() {
-  const [score, setScore] = useState(0);
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
   const [isQuizOver, setIsQuizOver] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,13 +15,15 @@ function App() {
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState();
   const [numberOfQuestions, setNumberOfQuestions] = useState();
 
+  const { resetScore } = useGlobalContext();
+
   //Set the current question number score and isQuizInProgress flag once the questions have been loaded.
   useEffect(() => {
     if (questions.length === numberOfQuestions) {
       console.log("Quiz Started");
       setIsQuizInProgress(true);
       setCurrentQuestionNumber(0);
-      setScore(0); //resets the score
+      resetScore();
     }
   }, [questions, numberOfQuestions]);
 
@@ -57,19 +59,6 @@ function App() {
     setIsLoading(false);
   }
 
-  function updateScore(timeRemaining) {
-    let score_increment;
-
-    if (timeRemaining > 10) {
-      score_increment = 30;
-    } else if (timeRemaining > 5) {
-      score_increment = 20;
-    } else {
-      score_increment = 10;
-    }
-    setScore((prevScore) => prevScore + score_increment);
-  }
-
   function getNextQuestion() {
     if (currentQuestionNumber < numberOfQuestions - 1) {
       setCurrentQuestionNumber((prevQuestionNumber) => prevQuestionNumber + 1);
@@ -100,14 +89,12 @@ function App() {
             question={questions[currentQuestionNumber].question}
             answers={questions[currentQuestionNumber].answers}
             correctAnswer={questions[currentQuestionNumber].correctAnswer}
-            score={score}
-            updateScore={updateScore}
             questionNumber={currentQuestionNumber + 1}
             getNextQuestion={getNextQuestion}
             numberOfQuestions={numberOfQuestions}
           />
         )}
-        {isQuizOver && <FinalScore score={score} playAgain={playAgain} />}
+        {isQuizOver && <FinalScore playAgain={playAgain} />}
       </div>
     </div>
   );
