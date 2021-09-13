@@ -49,13 +49,13 @@ export default function QuizQuestion({
   return (
     <div className="quiz-question">
       <div className="question-header">
+        <ScoreDisplay />
         <QuizProgress
           questionNumber={questionNumber}
           numberOfQuestions={numberOfQuestions}
         />
-        <Timer secondsLeft={secondsLeft} />
-        <ScoreDisplay />
       </div>
+      <Timer secondsLeft={secondsLeft} />
       <h2 className="question-number">Question {questionNumber}</h2>
       <p className="question">{question}</p>
       <Answers

@@ -35,7 +35,7 @@ export const CategorySelect = ({ updateCategoryAndDifficulty }) => {
         </select>
       </div>
       <div className="select-box-container">
-        <label htmlFor="difficulty">Difficulty</label>
+        <label htmlFor="difficulty">Difficulty:</label>
         <select id="difficulty" ref={difficultySelect} className="select-box">
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>

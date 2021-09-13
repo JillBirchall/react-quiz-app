@@ -25,21 +25,24 @@ export const NumberOfQuestionsSelect = ({
 
   return (
     <form className="quiz-form" onSubmit={handleSubmit}>
-      <div className="slidecontainer">
-        <p>
-          Questions: <span>{numberOfQuestions}</span>
-        </p>
-        <input
-          type="range"
-          min="1"
-          max={maxQuestions}
-          value={numberOfQuestions}
-          onChange={(e) => setNumberOfQuestions(e.target.value)}
-        />
+      <div className="sliderContainer">
+        <div>
+          <p className="sliderLabel">
+            Questions: <span>{numberOfQuestions}</span>
+          </p>
+          <input
+            type="range"
+            min="1"
+            max={maxQuestions}
+            value={numberOfQuestions}
+            onChange={(e) => setNumberOfQuestions(e.target.value)}
+            className="slider"
+          />
+        </div>
+        <button type="submit" className="btn start-btn">
+          Start Quiz
+        </button>
       </div>
-      <button type="submit" className="btn start-btn">
-        Start Quiz
-      </button>
     </form>
   );
 };
