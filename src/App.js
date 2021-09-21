@@ -102,5 +102,4 @@ function App() {
 
 export default App;
 
-//Need to make the answer button red or green depending on whether or not the answer is correct
 //Add a loader for when it is loading the categories, and the questions

@@ -51,7 +51,7 @@ export default function AnswerButton({
     <button
       ref={answerButton}
       className="btn answer-btn"
-      onClick={() => checkAnswer()}
+      onMouseDown={() => checkAnswer()}
     >
       {answer}
       <span ref={scoreIncrementDisplay} className="score-increment hide">

@@ -308,22 +308,26 @@ body {
     min-height: 200px;
   }
 
+  .answer-btn {
+    width: 280px;
+  }
+
   .timer {
     margin-bottom: 20px;
   }
 }
 
 @media (min-width: 992px) {
-  .quiz-box {
-    width: 60%;
-  }
-
   .select-box {
     font-size: 1rem;
   }
 
   .select-box-container label {
     font-size: 1.2rem;
+  }
+
+  .answer-btn {
+    width: 300px;
   }
 
   .start-btn,
