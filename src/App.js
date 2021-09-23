@@ -5,7 +5,6 @@ import QuizQuestion from "./QuizQuestion";
 import FinalScore from "./FinalScore";
 import Loader from "./Loader";
 import axios from "axios";
-import { useGlobalContext } from "./context";
 
 function App() {
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
@@ -14,8 +13,7 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState();
   const [numberOfQuestions, setNumberOfQuestions] = useState();
-
-  const { resetScore } = useGlobalContext();
+  const [score, setScore] = useState(0);
 
   //Set the current question number score and isQuizInProgress flag once the questions have been loaded.
   useEffect(() => {
@@ -67,6 +65,24 @@ function App() {
     }
   }
 
+  function resetScore() {
+    setScore(0);
+  }
+
+  function updateScore(timeRemaining) {
+    let score_increment;
+
+    if (timeRemaining > 10) {
+      score_increment = 30;
+    } else if (timeRemaining > 5) {
+      score_increment = 20;
+    } else {
+      score_increment = 10;
+    }
+
+    setScore(score + score_increment);
+  }
+
   function decodeHTML(html) {
     let txt = document.createElement("textarea");
     txt.innerHTML = html;
@@ -92,9 +108,11 @@ function App() {
             questionNumber={currentQuestionNumber + 1}
             getNextQuestion={getNextQuestion}
             numberOfQuestions={numberOfQuestions}
+            score={score}
+            updateScore={updateScore}
           />
         )}
-        {isQuizOver && <FinalScore playAgain={playAgain} />}
+        {isQuizOver && <FinalScore playAgain={playAgain} score={score} />}
       </div>
     </div>
   );

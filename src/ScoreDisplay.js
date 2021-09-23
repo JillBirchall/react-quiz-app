@@ -1,8 +1,5 @@
 import React from "react";
-import { useGlobalContext } from "./context";
 
-export default function ScoreDisplay() {
-  const { score } = useGlobalContext();
-
+export default function ScoreDisplay({ score }) {
   return <div className="score">Score: {score}</div>;
 }

@@ -1,9 +1,6 @@
 import React from "react";
-import { useGlobalContext } from "./context";
 
-export default function FinalScore({ playAgain }) {
-  const { score } = useGlobalContext();
-
+export default function FinalScore({ playAgain, score }) {
   return (
     <div className="final-score">
       <h3 className="final-score-text">

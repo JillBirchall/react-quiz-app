@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import Answers from "./Answers";
-import { useGlobalContext } from "./context";
 import QuizProgress from "./QuizProgress";
 import ScoreDisplay from "./ScoreDisplay";
 import Timer from "./Timer";
@@ -12,10 +11,10 @@ export default function QuizQuestion({
   questionNumber,
   getNextQuestion,
   numberOfQuestions,
+  score,
+  updateScore,
 }) {
   const [secondsLeft, setSecondsLeft] = useState(15);
-
-  const { updateScore } = useGlobalContext();
 
   const intervalID = useRef(null);
 
@@ -49,7 +48,7 @@ export default function QuizQuestion({
   return (
     <div className="quiz-question">
       <div className="question-header">
-        <ScoreDisplay />
+        <ScoreDisplay score={score} />
         <QuizProgress
           questionNumber={questionNumber}
           numberOfQuestions={numberOfQuestions}
