@@ -20,10 +20,10 @@ export default function QuizQuestion({
 
   function answerQuestion(isAnswerCorrect) {
     clearInterval(intervalID.current);
+    if (isAnswerCorrect) {
+      updateScore(secondsLeft);
+    }
     setTimeout(() => {
-      if (isAnswerCorrect) {
-        updateScore(secondsLeft);
-      }
       getNextQuestion();
       setSecondsLeft(15);
     }, 2000);
