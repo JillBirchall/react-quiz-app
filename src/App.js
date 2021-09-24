@@ -3,6 +3,7 @@ import QuizForm from "./QuizForm";
 import React, { useState, useEffect } from "react";
 import QuizQuestion from "./QuizQuestion";
 import FinalScore from "./FinalScore";
+import Error from "./Error";
 import Loader from "./Loader";
 import axios from "axios";
 
@@ -10,6 +11,7 @@ function App() {
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
   const [isQuizOver, setIsQuizOver] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState();
   const [numberOfQuestions, setNumberOfQuestions] = useState();
@@ -34,27 +36,41 @@ function App() {
   async function getQuestions(categoryId, difficulty, questionsSelected) {
     setIsLoading(true);
     setNumberOfQuestions(questionsSelected);
-    const res = await axios.get("https://opentdb.com/api.php", {
-      params: {
-        amount: questionsSelected,
-        category: categoryId,
-        difficulty: difficulty,
-      },
-    });
-    let retrievedQuestions = res.data.results.map((result, index) => {
-      let allAnswers = [
-        ...result.incorrect_answers.map((answer) => decodeHTML(answer)),
-        decodeHTML(result.correct_answer),
-      ];
-      return {
-        id: `${index}-${Date.now()}`,
-        question: decodeHTML(result.question),
-        answers: allAnswers.sort(() => Math.random() - 0.5),
-        correctAnswer: decodeHTML(result.correct_answer),
-      };
-    });
-    setQuestions(retrievedQuestions);
-    setIsLoading(false);
+    try {
+      const res = await axios
+        .get("https://opentdb.com/api.php", {
+          params: {
+            amount: questionsSelected,
+            category: categoryId,
+            difficulty: difficulty,
+          },
+        })
+        .catch((error) => {
+          throw new Error();
+        });
+
+      if (res.data.response_code === 0) {
+        let retrievedQuestions = res.data.results.map((result, index) => {
+          let allAnswers = [
+            ...result.incorrect_answers.map((answer) => decodeHTML(answer)),
+            decodeHTML(result.correct_answer),
+          ];
+          return {
+            id: `${index}-${Date.now()}`,
+            question: decodeHTML(result.question),
+            answers: allAnswers.sort(() => Math.random() - 0.5),
+            correctAnswer: decodeHTML(result.correct_answer),
+          };
+        });
+        setQuestions(retrievedQuestions);
+        setIsLoading(false);
+      } else {
+        throw new Error();
+      }
+    } catch (err) {
+      setIsError(true);
+      setIsLoading(false);
+    }
   }
 
   function getNextQuestion() {
@@ -96,9 +112,10 @@ function App() {
   return (
     <div className="container">
       <div className="quiz-box">
-        {!isQuizInProgress && !isQuizOver && !isLoading && (
+        {!isQuizInProgress && !isQuizOver && !isLoading && !isError && (
           <QuizForm getQuestions={getQuestions} />
         )}
+        {isError && <Error />}
         {isLoading && <Loader />}
         {isQuizInProgress && (
           <QuizQuestion
@@ -119,5 +136,3 @@ function App() {
 }
 
 export default App;
-
-//Add a loader for when it is loading the categories, and the questions
