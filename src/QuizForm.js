@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CategorySelect } from "./CategorySelect";
 import { NumberOfQuestionsSelect } from "./NumberOfQuestionsSelect";
 
-export default function QuizForm({ getQuestions }) {
+export default function QuizForm({ getQuestions, handleError }) {
   const [isCategorySelected, setIsCategorySelected] = useState(false);
   const [categoryId, setCategoryId] = useState();
   const [difficulty, setDifficulty] = useState("");
@@ -22,6 +22,7 @@ export default function QuizForm({ getQuestions }) {
     return (
       <CategorySelect
         updateCategoryAndDifficulty={updateCategoryAndDifficulty}
+        handleError={handleError}
       />
     );
   } else {
@@ -30,6 +31,7 @@ export default function QuizForm({ getQuestions }) {
         categoryId={categoryId}
         difficulty={difficulty}
         startQuiz={startQuiz}
+        handleError={handleError}
       />
     );
   }

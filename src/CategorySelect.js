@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import Loader from "./Loader";
 
-export const CategorySelect = ({ updateCategoryAndDifficulty }) => {
+export const CategorySelect = ({
+  updateCategoryAndDifficulty,
+  handleError,
+}) => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const categorySelect = useRef();
@@ -13,7 +16,8 @@ export const CategorySelect = ({ updateCategoryAndDifficulty }) => {
       .then((data) => {
         setCategories(data.trivia_categories);
         setIsLoading(false);
-      });
+      })
+      .catch((err) => handleError());
   }, []);
 
   function handleSubmit(e) {

@@ -67,7 +67,7 @@ body {
 .quiz-box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   min-height: 250px;
   width: 80%;
@@ -91,7 +91,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 250px;
+  height: 300px;
   width: 100%;
 }
 
@@ -141,8 +141,11 @@ body {
 }
 
 .sliderLabel {
-  font-family: var(--text-font-family);
+  color: var(--secondary-text-colour);
+  font-weight: bold;
+  font-size: 1rem;
   text-align: center;
+  font-family: var(--text-font-family);
 }
 
 .slider {
@@ -245,7 +248,7 @@ body {
 .question-number {
   font-family: var(--title-font-family);
   color: var(--primary-text-colour);
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 /*Answers */
@@ -296,7 +299,15 @@ body {
   display: none;
 }
 
-@media (orientation: landscape), (min-width: 768px) {
+@media (orientation: landscape) and (min-width: 550px) {
+  .quiz-box {
+    min-width: 60%;
+  }
+
+  .quiz-form {
+    height: 250px;
+  }
+
   .answers {
     display: grid;
     grid-template-columns: repeat(2, 50%);
@@ -307,7 +318,17 @@ body {
   }
 }
 
-@media (min-height: 768px) {
+@media (orientation: landscape) and (min-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .quiz-box {
+    min-height: 350px;
+  }
+}
+
+@media (min-height: 500px) {
   .title {
     font-family: var(--title-font-family);
     align-self: center;
@@ -372,12 +393,12 @@ body {
   }
 
   .question {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .answer-btn {
     min-height: 50px;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .answer-btn {

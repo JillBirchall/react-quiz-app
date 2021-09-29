@@ -73,6 +73,10 @@ function App() {
     }
   }
 
+  function toggleLoading(displayLoader) {
+    setIsLoading(displayLoader);
+  }
+
   function getNextQuestion() {
     if (currentQuestionNumber < numberOfQuestions - 1) {
       setCurrentQuestionNumber((prevQuestionNumber) => prevQuestionNumber + 1);
@@ -113,7 +117,10 @@ function App() {
     <div className="container">
       <div className="quiz-box">
         {!isQuizInProgress && !isQuizOver && !isLoading && !isError && (
-          <QuizForm getQuestions={getQuestions} />
+          <QuizForm
+            getQuestions={getQuestions}
+            handleError={() => setIsError(true)}
+          />
         )}
         {isError && <Error />}
         {isLoading && <Loader />}
