@@ -33,7 +33,7 @@ body {
   );
 }
 
-.loader {
+/* .loader {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -62,7 +62,7 @@ body {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
   }
-}
+} */
 
 .quiz-box {
   display: flex;
@@ -86,25 +86,25 @@ body {
   font-size: 1.5rem;
 }
 
-.quiz-form {
+/* .quiz-form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   height: 300px;
   width: 100%;
-}
+} */
 
-.final-score {
+/* .final-score {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   height: 100%;
   width: 100%;
-}
+} */
 
-.final-score-text {
+/* .final-score-text {
   font-family: var(--title-font-family);
   font-size: 30px;
   color: var(--secondary-text-colour);
@@ -113,9 +113,9 @@ body {
 
 .final-score-number {
   color: var(--primary-text-colour);
-}
+} */
 
-.select-box-container {
+/* .select-box-container {
   margin: 30px 0 0 10px;
   font-family: var(--text-font-family);
 }
@@ -129,18 +129,18 @@ body {
   color: var(--secondary-text-colour);
   font-weight: bold;
   font-size: 0.8rem;
-}
+} */
 
-.sliderContainer {
+/* .sliderContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   width: 100%;
   height: 100%;
-}
+} */
 
-.sliderLabel {
+/* .sliderLabel {
   color: var(--secondary-text-colour);
   font-weight: bold;
   font-size: 1rem;
@@ -150,9 +150,9 @@ body {
 
 .slider {
   width: 200px;
-}
+} */
 
-.start-btn,
+/* .start-btn,
 .play-again-btn {
   font-family: var(--text-font-family);
   align-self: center;
@@ -165,14 +165,14 @@ body {
   font-size: 1rem;
   position: absolute;
   bottom: 20px;
-}
+} */
 
-.btn:hover {
+/* .btn:hover {
   cursor: pointer;
   background-color: white;
   color: var(--primary-button-colour);
   border: 1px solid var(--primary-button-colour);
-}
+} */
 
 .quiz-question {
   display: flex;
@@ -192,19 +192,19 @@ body {
   padding: 10px 10px 5px 10px;
 }
 
-.score {
+/* .score {
   font-family: var(--title-font-family);
   color: var(--primary-text-colour);
   font-size: 1rem;
   margin-right: 30px;
-}
+} */
 
-.progress {
+/* .progress {
   font-family: var(--title-font-family);
   color: var(--primary-text-colour);
   margin-left: 30px;
   font-size: 1rem;
-}
+} */
 
 /*Timer */
 .timer {

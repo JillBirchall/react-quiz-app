@@ -1,5 +1,6 @@
 import React from "react";
+import { Wrapper } from "./ScoreDisplay.styles";
 
 export default function ScoreDisplay({ score }) {
-  return <div className="score">Score: {score}</div>;
+  return <Wrapper>Score: {score}</Wrapper>;
 }

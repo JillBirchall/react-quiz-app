@@ -1,9 +1,10 @@
 import React from "react";
+import { Wrapper } from "./QuizProgress.styles";
 
 export default function QuizProgress({ questionNumber, numberOfQuestions }) {
   return (
-    <div className="progress">
-      <span id="currentQuestion">{questionNumber}</span>/{numberOfQuestions}
-    </div>
+    <Wrapper>
+      <span>{questionNumber}</span>/{numberOfQuestions}
+    </Wrapper>
   );
 }

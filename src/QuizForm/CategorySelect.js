@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import Loader from "./Loader";
+import Loader from "../Loader";
+import { Wrapper, StartButton, SelectBox } from "./QuizForm.styles";
 
 export const CategorySelect = ({
   updateCategoryAndDifficulty,
@@ -31,9 +32,9 @@ export const CategorySelect = ({
   if (isLoading) return <Loader />;
   else {
     return (
-      <form className="quiz-form" onSubmit={handleSubmit}>
+      <Wrapper onSubmit={handleSubmit}>
         <h1 className="title">Quiz</h1>
-        <div className="select-box-container">
+        <SelectBox>
           <label htmlFor="category">Category:</label>
           <select id="category" ref={categorySelect} className="select-box">
             {categories.map((category) => {
@@ -44,19 +45,17 @@ export const CategorySelect = ({
               );
             })}
           </select>
-        </div>
-        <div className="select-box-container">
+        </SelectBox>
+        <SelectBox>
           <label htmlFor="difficulty">Difficulty:</label>
           <select id="difficulty" ref={difficultySelect} className="select-box">
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
-        </div>
-        <button type="submit" className="btn start-btn">
-          Next
-        </button>
-      </form>
+        </SelectBox>
+        <StartButton type="submit">Next</StartButton>
+      </Wrapper>
     );
   }
 };

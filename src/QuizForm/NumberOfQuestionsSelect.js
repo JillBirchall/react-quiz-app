@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Loader from "./Loader";
+import Loader from "../Loader";
+import { Wrapper, StartButton, Slider } from "./QuizForm.styles";
 
 export const NumberOfQuestionsSelect = ({
   categoryId,
@@ -31,8 +32,8 @@ export const NumberOfQuestionsSelect = ({
   if (isLoading) return <Loader />;
   else {
     return (
-      <form className="quiz-form" onSubmit={handleSubmit}>
-        <div className="sliderContainer">
+      <Wrapper onSubmit={handleSubmit}>
+        <Slider>
           <div>
             <p className="sliderLabel">
               Questions: <span>{numberOfQuestions}</span>
@@ -46,11 +47,9 @@ export const NumberOfQuestionsSelect = ({
               className="slider"
             />
           </div>
-          <button type="submit" className="btn start-btn">
-            Start Quiz
-          </button>
-        </div>
-      </form>
+          <StartButton type="submit">Start Quiz</StartButton>
+        </Slider>
+      </Wrapper>
     );
   }
 };

@@ -1,5 +1,5 @@
 import "./App.css";
-import QuizForm from "./QuizForm";
+import QuizForm from "./QuizForm/QuizForm";
 import React, { useState, useEffect } from "react";
 import QuizQuestion from "./QuizQuestion";
 import FinalScore from "./FinalScore";
