@@ -6,6 +6,7 @@ import FinalScore from "./FinalScore";
 import Error from "./Error";
 import Loader from "./Loader";
 import axios from "axios";
+import { Wrapper } from "./App.styles";
 
 function App() {
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
@@ -114,7 +115,7 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <Wrapper>
       <div className="quiz-box">
         {!isQuizInProgress && !isQuizOver && !isLoading && !isError && (
           <QuizForm
@@ -138,7 +139,7 @@ function App() {
         )}
         {isQuizOver && <FinalScore playAgain={playAgain} score={score} />}
       </div>
-    </div>
+    </Wrapper>
   );
 }
 

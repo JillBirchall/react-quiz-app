@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Wrapper } from "./Timer.styles";
 
 export default function Timer({ secondsLeft }) {
   const [timerColour, setTimerColour] = useState("green");
@@ -14,7 +15,7 @@ export default function Timer({ secondsLeft }) {
   }, [secondsLeft]);
 
   return (
-    <div className="timer" id="questionTimer">
+    <Wrapper>
       <p className="seconds">{secondsLeft}</p>
       <div className="timer-bar">
         <div
@@ -25,6 +26,6 @@ export default function Timer({ secondsLeft }) {
           }}
         ></div>
       </div>
-    </div>
+    </Wrapper>
   );
 }
