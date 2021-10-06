@@ -3,6 +3,7 @@ import Answers from "./Answers";
 import QuizProgress from "./QuizProgress";
 import ScoreDisplay from "./ScoreDisplay";
 import Timer from "./Timer";
+import { Wrapper } from "./QuizQuestion.styles";
 
 export default function QuizQuestion({
   question,
@@ -46,7 +47,7 @@ export default function QuizQuestion({
   }, [secondsLeft, getNextQuestion]);
 
   return (
-    <div className="quiz-question">
+    <Wrapper>
       <div className="question-header">
         <ScoreDisplay score={score} />
         <QuizProgress
@@ -63,6 +64,6 @@ export default function QuizQuestion({
         answerQuestion={answerQuestion}
         secondsLeft={secondsLeft}
       />
-    </div>
+    </Wrapper>
   );
 }

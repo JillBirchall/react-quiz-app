@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AnswerButton from "./AnswerButton";
 import { v4 as uuidv4 } from "uuid";
+import { Wrapper } from "./Answers.styles";
 
 export default function Answers({
   answers,
@@ -22,7 +23,7 @@ export default function Answers({
   }
 
   return (
-    <div className="answers">
+    <Wrapper>
       {answers.map((answer) => {
         return (
           <AnswerButton
@@ -36,6 +37,6 @@ export default function Answers({
           />
         );
       })}
-    </div>
+    </Wrapper>
   );
 }

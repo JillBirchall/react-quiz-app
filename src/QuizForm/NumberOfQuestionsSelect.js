@@ -20,6 +20,7 @@ export const NumberOfQuestionsSelect = ({
           data.category_question_count[`total_${difficulty}_question_count`];
         setMaxQuestions(questionsAvailable > 50 ? 50 : questionsAvailable);
         setIsLoading(false);
+        //check if res.status === 200 and if not, throw error
       })
       .catch((err) => handleError());
   }, [categoryId, difficulty]);

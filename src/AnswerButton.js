@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { AnswerBtn } from "./AnswerButton.styles";
 
 export default function AnswerButton({
   answer,
@@ -8,23 +9,13 @@ export default function AnswerButton({
   selectAnswer,
   isSelectedAnswer,
 }) {
-  const answerButton = useRef();
   const scoreIncrementDisplay = useRef();
   const [scoreIncrement, setScoreIncrement] = useState(0);
 
   useEffect(() => {
-    if (isQuestionAnswered) {
-      if (isCorrectAnswer) {
-        answerButton.current.className = "btn answer-btn right";
-        if (isSelectedAnswer) {
-          setScoreIncrement(getScoreIncrement());
-          scoreIncrementDisplay.current.className = "score-increment";
-        }
-      } else {
-        if (isSelectedAnswer) {
-          answerButton.current.className = "btn answer-btn incorrect";
-        }
-      }
+    if (isQuestionAnswered && isSelectedAnswer && isCorrectAnswer) {
+      setScoreIncrement(getScoreIncrement());
+      scoreIncrementDisplay.current.className = "score-increment";
     }
   }, []);
 
@@ -48,16 +39,16 @@ export default function AnswerButton({
   }
 
   return (
-    <button
-      ref={answerButton}
-      className="btn answer-btn"
+    <AnswerBtn
       onMouseDown={() => checkAnswer()}
+      questionAnswered={isQuestionAnswered}
+      selectedAnswer={isSelectedAnswer}
+      correctAnswer={isCorrectAnswer}
     >
       {answer}
       <span ref={scoreIncrementDisplay} className="score-increment hide">
         +{scoreIncrement}
       </span>
-    </button>
+    </AnswerBtn>
   );
-  // }
 }

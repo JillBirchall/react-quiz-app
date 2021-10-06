@@ -17,6 +17,7 @@ export const CategorySelect = ({
       .then((data) => {
         setCategories(data.trivia_categories);
         setIsLoading(false);
+        //check if res.status === 200 and if not, throw error
       })
       .catch((err) => handleError());
   }, []);
