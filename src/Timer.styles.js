@@ -19,11 +19,11 @@ export const Wrapper = styled.div`
   }
 
   .seconds {
-    font-family: var(--title-font-family);
-    color: var(--primary-text-colour);
-    margin: 10px 0 0 0;
+    font-family: ${(props) => props.theme.fonts.headingFont};
+    color: ${(props) => props.theme.colours.headingColour};
+    margin: 20px 0 0 0;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2rem;
   }
 
   @media (min-height: 500px) {
@@ -31,10 +31,6 @@ export const Wrapper = styled.div`
       height: 30px;
       width: 150px;
       border: 1px solid #0073ff;
-    }
-
-    .seconds {
-      font-size: 1.5em;
     }
   }
 

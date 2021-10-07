@@ -18,17 +18,47 @@ export const Wrapper = styled.div`
   }
 
   .question-number {
-    font-family: var(--title-font-family);
-    color: var(--primary-text-colour);
+    font-family: ${(props) => props.theme.fonts.headingFont};
+    color: ${(props) => props.theme.colours.headingColour};
     font-size: 1rem;
   }
 
   .question {
-    font-family: var(--text-font-family);
-    color: var(--secondary-text-color);
+    font-family: ${(props) => props.theme.fonts.textFont};
+    color: ${(props) => props.theme.fonts.textColour};
     font-weight: normal;
     font-size: 1rem;
     margin: 0 10px 10px 10px;
     text-align: center;
   }
+
+  @media (min-width: 768px) {
+    .question-number {
+      font-size: 1.3rem;
+    }
+
+    .question {
+      font-size: 1.3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .question-number {
+      font-size: 1.5rem;
+    }
+
+    .question {
+      font-size: 1.5rem;
+    }
+  }
 `;
+
+// @media (min-height: 500px) {
+//   .question {
+//     font-size: 1.5rem;
+//   }
+
+//   .question-number {
+//     font-size: 1.5rem;
+//   }
+// }

@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const AnswerBtn = styled.button`
-  font-family: var(--text-font-family);
+  font-family: ${(props) => props.theme.fonts.textFont};
   background-color: ${(props) =>
     props.questionAnswered
       ? props.correctAnswer
         ? " rgb(0, 172, 9)"
         : props.selectedAnswer
         ? " rgb(209, 0, 0)"
-        : "var(--primary-button-colour)"
-      : "var(--primary-button-colour)"};
+        : props.theme.colours.buttonColour
+      : props.theme.colours.buttonColour};
   border: none;
   margin: 10px;
   padding: 5px 50px;
@@ -28,8 +28,8 @@ export const AnswerBtn = styled.button`
   &:hover {
     cursor: pointer;
     background-color: white;
-    color: var(--primary-button-colour);
-    border: 1px solid var(--primary-button-colour);
+    color: ${props.theme.colours.buttonColour};
+    border: 1px solid ${props.theme.colours.buttonColour};
   }
   
   `}
@@ -47,10 +47,11 @@ export const AnswerBtn = styled.button`
   @media (min-width: 768px) {
     width: 280px;
     min-height: 50px;
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1024px) {
     width: 300px;
+    font-size: 1.4rem;
   }
 `;

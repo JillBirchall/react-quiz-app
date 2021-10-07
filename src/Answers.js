@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import AnswerButton from "./AnswerButton";
 import { v4 as uuidv4 } from "uuid";
+import AnswerButton from "./AnswerButton";
 import { Wrapper } from "./Answers.styles";
 
 export default function Answers({

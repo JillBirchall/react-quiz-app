@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   height: 100px;
   border-radius: 50%;
   border: 10px solid white;
-  border-top-color: var(--primary-button-colour);
+  border-top-color: ${(props) => props.theme.colours.buttonColour};
   animation: rotate 2s linear infinite;
   -webkit-animation: rotate 2s linear infinite;
   -webkit-border-radius: 50%;

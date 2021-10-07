@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   width: 100%;
 
   .final-score-text {
-    font-family: "Comfortaa", cursive;
+    font-family: ${(props) => props.theme.fonts.headingFont};
     font-size: 30px;
     color: rgb(0, 38, 95);
     text-align: center;
@@ -22,9 +22,9 @@ export const Wrapper = styled.div`
 `;
 
 export const PlayAgainButton = styled(Button)`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fonts.textFont};
   align-self: center;
-  background-color: rgb(153, 0, 255);
+  background-color: ${(props) => props.theme.colours.buttonColour};
   color: white;
   height: 30px;
   width: 100px;
@@ -33,4 +33,10 @@ export const PlayAgainButton = styled(Button)`
   font-size: 1rem;
   position: absolute;
   bottom: 20px;
+
+  @media (min-width: 1024px) {
+    height: 40px;
+    width: 120px;
+    font-size: 1.2rem;
+  }
 `;

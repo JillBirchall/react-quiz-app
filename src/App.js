@@ -1,12 +1,15 @@
-import "./App.css";
-import QuizForm from "./QuizForm/QuizForm";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+//Components
+import QuizForm from "./QuizForm/QuizForm";
 import QuizQuestion from "./QuizQuestion";
 import FinalScore from "./FinalScore";
 import Error from "./Error";
 import Loader from "./Loader";
-import axios from "axios";
+//Styles
 import { Wrapper } from "./App.styles";
+import Theme from "./Theme.styles";
+import GlobalStyle from "./GlobalStyles";
 
 function App() {
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
@@ -115,31 +118,34 @@ function App() {
   }
 
   return (
-    <Wrapper>
-      <div className="quiz-box">
-        {!isQuizInProgress && !isQuizOver && !isLoading && !isError && (
-          <QuizForm
-            getQuestions={getQuestions}
-            handleError={() => setIsError(true)}
-          />
-        )}
-        {isError && <Error />}
-        {isLoading && <Loader />}
-        {isQuizInProgress && (
-          <QuizQuestion
-            question={questions[currentQuestionNumber].question}
-            answers={questions[currentQuestionNumber].answers}
-            correctAnswer={questions[currentQuestionNumber].correctAnswer}
-            questionNumber={currentQuestionNumber + 1}
-            getNextQuestion={getNextQuestion}
-            numberOfQuestions={numberOfQuestions}
-            score={score}
-            updateScore={updateScore}
-          />
-        )}
-        {isQuizOver && <FinalScore playAgain={playAgain} score={score} />}
-      </div>
-    </Wrapper>
+    <Theme>
+      <GlobalStyle />
+      <Wrapper>
+        <div className="quiz-box">
+          {!isQuizInProgress && !isQuizOver && !isLoading && !isError && (
+            <QuizForm
+              getQuestions={getQuestions}
+              handleError={() => setIsError(true)}
+            />
+          )}
+          {isError && <Error />}
+          {isLoading && <Loader />}
+          {isQuizInProgress && (
+            <QuizQuestion
+              question={questions[currentQuestionNumber].question}
+              answers={questions[currentQuestionNumber].answers}
+              correctAnswer={questions[currentQuestionNumber].correctAnswer}
+              questionNumber={currentQuestionNumber + 1}
+              getNextQuestion={getNextQuestion}
+              numberOfQuestions={numberOfQuestions}
+              score={score}
+              updateScore={updateScore}
+            />
+          )}
+          {isQuizOver && <FinalScore playAgain={playAgain} score={score} />}
+        </div>
+      </Wrapper>
+    </Theme>
   );
 }
 
