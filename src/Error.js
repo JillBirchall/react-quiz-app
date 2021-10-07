@@ -1,10 +1,13 @@
 import React from "react";
+import { Wrapper, HomeButton } from "./Error.styles";
 
-export const Error = () => {
+export const Error = ({ tryAgain }) => {
   return (
-    <div>
+    <Wrapper>
+      <h1>An Error has Occurred!</h1>
       <p>Something went wrong. Please try again!</p>
-    </div>
+      <HomeButton onClick={tryAgain}>Home </HomeButton>
+    </Wrapper>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 //Components
 import QuizForm from "./QuizForm/QuizForm";
-import QuizQuestion from "./QuizQuestion";
+import QuizQuestion from "./Quiz/QuizQuestion";
 import FinalScore from "./FinalScore";
 import Error from "./Error";
 import Loader from "./Loader";
@@ -15,7 +15,7 @@ function App() {
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
   const [isQuizOver, setIsQuizOver] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(true);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState();
   const [numberOfQuestions, setNumberOfQuestions] = useState();
@@ -117,6 +117,10 @@ function App() {
     setIsQuizOver(false);
   }
 
+  function tryAgain() {
+    setIsError(false);
+  }
+
   return (
     <Theme>
       <GlobalStyle />
@@ -128,7 +132,7 @@ function App() {
               handleError={() => setIsError(true)}
             />
           )}
-          {isError && <Error />}
+          {isError && <Error tryAgain={tryAgain} />}
           {isLoading && <Loader />}
           {isQuizInProgress && (
             <QuizQuestion
