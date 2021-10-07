@@ -15,7 +15,7 @@ function App() {
   const [isQuizInProgress, setIsQuizInProgress] = useState(false);
   const [isQuizOver, setIsQuizOver] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState();
   const [numberOfQuestions, setNumberOfQuestions] = useState();
