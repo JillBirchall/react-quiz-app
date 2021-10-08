@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Loader from "../Loader";
-import { Wrapper, StartButton, SelectBox } from "./QuizForm.styles";
+import { Wrapper, SelectBox } from "./QuizForm.styles";
+import { Button } from "../Button.styles";
 
 export const CategorySelect = ({
   updateCategoryAndDifficulty,
@@ -55,7 +56,7 @@ export const CategorySelect = ({
             <option value="hard">Hard</option>
           </select>
         </SelectBox>
-        <StartButton type="submit">Next</StartButton>
+        <Button type="submit">Next</Button>
       </Wrapper>
     );
   }

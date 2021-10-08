@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../Loader";
-import { Wrapper, StartButton, Slider } from "./QuizForm.styles";
+import { Wrapper, Slider } from "./QuizForm.styles";
+import { Button } from "../Button.styles";
 
 export const NumberOfQuestionsSelect = ({
   categoryId,
@@ -48,7 +49,7 @@ export const NumberOfQuestionsSelect = ({
               className="slider"
             />
           </div>
-          <StartButton type="submit">Start Quiz</StartButton>
+          <Button type="submit">Start Quiz</Button>
         </Slider>
       </Wrapper>
     );

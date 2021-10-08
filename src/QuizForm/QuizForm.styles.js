@@ -20,26 +20,6 @@ export const Wrapper = styled.form`
   }
 `;
 
-export const StartButton = styled(Button)`
-  font-family: ${(props) => props.theme.fonts.textFont};
-  align-self: center;
-  background-color: ${(props) => props.theme.colours.buttonColour};
-  color: white;
-  height: 30px;
-  width: 100px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  position: absolute;
-  bottom: 20px;
-
-  @media (min-width: 1024px) {
-    height: 40px;
-    width: 120px;
-    font-size: 1.2rem;
-  }
-`;
-
 export const Slider = styled.div`
   display: flex;
   flex-direction: column;

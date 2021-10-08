@@ -1,5 +1,6 @@
 import React from "react";
-import { Wrapper, PlayAgainButton } from "./FinalScore.styles";
+import { Wrapper } from "./FinalScore.styles";
+import { Button } from "./Button.styles";
 
 export default function FinalScore({ playAgain, score }) {
   return (
@@ -7,7 +8,7 @@ export default function FinalScore({ playAgain, score }) {
       <h3 className="final-score-text">
         Final Score: <span className="final-score-number">{score}</span>
       </h3>
-      <PlayAgainButton onClick={playAgain}>Play Again</PlayAgainButton>
+      <Button onClick={playAgain}>Play Again</Button>
     </Wrapper>
   );
 }
