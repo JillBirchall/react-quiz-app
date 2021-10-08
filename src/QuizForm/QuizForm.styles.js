@@ -1,22 +1,15 @@
 import styled from "styled-components";
-import { Button } from "../Button.styles";
 
 export const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 300px;
+  height: 280px;
   width: 100%;
 
-  @media (orientation: landscape) and (min-width: 550px) {
-    height: 250px;
-  }
-
-  @media (min-height: 500px) {
-    .quiz-form {
-      height: 400px;
-    }
+  @media (min-width: 1024px) {
+    height: 400px;
   }
 `;
 

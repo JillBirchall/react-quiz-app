@@ -5,6 +5,7 @@ const theme = {
     headingColour: "rgb(0, 78, 194)",
     textColour: "rgb(0, 38, 95)",
     buttonColour: "rgb(153, 0, 255)",
+    secondaryColour: "rgb(66, 188, 245)",
   },
   fonts: {
     headingFont: "Comfortaa, cursive",
