@@ -6,6 +6,7 @@ import QuizQuestion from "./Quiz/QuizQuestion";
 import FinalScore from "./FinalScore";
 import Error from "./Error";
 import Loader from "./Loader";
+import Footer from "./Footer";
 //Styles
 import { Wrapper } from "./App.styles";
 import Theme from "./Theme.styles";
@@ -125,29 +126,30 @@ function App() {
     <Theme>
       <GlobalStyle />
       <Wrapper>
-        {/* <div className="quiz-box"> */}
-        {!isQuizInProgress && !isQuizOver && !isLoading && !isError && (
-          <QuizForm
-            getQuestions={getQuestions}
-            handleError={() => setIsError(true)}
-          />
-        )}
-        {isError && <Error tryAgain={tryAgain} />}
-        {isLoading && <Loader />}
-        {isQuizInProgress && (
-          <QuizQuestion
-            question={questions[currentQuestionNumber].question}
-            answers={questions[currentQuestionNumber].answers}
-            correctAnswer={questions[currentQuestionNumber].correctAnswer}
-            questionNumber={currentQuestionNumber + 1}
-            getNextQuestion={getNextQuestion}
-            numberOfQuestions={numberOfQuestions}
-            score={score}
-            updateScore={updateScore}
-          />
-        )}
-        {isQuizOver && <FinalScore playAgain={playAgain} score={score} />}
-        {/* </div> */}
+        <div className="quiz-box">
+          {!isQuizInProgress && !isQuizOver && !isLoading && !isError && (
+            <QuizForm
+              getQuestions={getQuestions}
+              handleError={() => setIsError(true)}
+            />
+          )}
+          {isError && <Error tryAgain={tryAgain} />}
+          {isLoading && <Loader />}
+          {isQuizInProgress && (
+            <QuizQuestion
+              question={questions[currentQuestionNumber].question}
+              answers={questions[currentQuestionNumber].answers}
+              correctAnswer={questions[currentQuestionNumber].correctAnswer}
+              questionNumber={currentQuestionNumber + 1}
+              getNextQuestion={getNextQuestion}
+              numberOfQuestions={numberOfQuestions}
+              score={score}
+              updateScore={updateScore}
+            />
+          )}
+          {isQuizOver && <FinalScore playAgain={playAgain} score={score} />}
+        </div>
+        <Footer />
       </Wrapper>
     </Theme>
   );

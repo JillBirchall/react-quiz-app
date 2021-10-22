@@ -1,7 +1,7 @@
 import React from "react";
 import { Wrapper, HomeButton } from "./Error.styles";
 
-export const Error = ({ tryAgain }) => {
+const Error = ({ tryAgain }) => {
   return (
     <Wrapper>
       <h1>An Error has Occurred!</h1>
