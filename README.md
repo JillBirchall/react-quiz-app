@@ -1,6 +1,8 @@
 # Description
 
-A trivia quiz with a choice of categories, difficulties and number of questions. The category list is dynamically generated from the API. The maximum number of questions is 50, or the maximum number of questions available for that category if lower. 
+A trivia quiz created using ReactJS and Styled components.
+
+There is a choice of categories, difficulties and number of questions. The category list is dynamically generated from the API. The maximum number of questions is 50, or the maximum number of questions available for that category if lower. 
 
 Each question has a 15 second timer, and the score awarded for the correct answer varies depending on the time left on the timer:
 
