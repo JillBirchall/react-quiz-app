@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 //Components
 import QuizForm from "./QuizForm/QuizForm";
 import QuizQuestion from "./Quiz/QuizQuestion";
@@ -61,7 +62,7 @@ function App() {
             decodeHTML(result.correct_answer),
           ];
           return {
-            id: `${index}-${Date.now()}`,
+            id: uuidv4(),
             question: decodeHTML(result.question),
             answers: allAnswers.sort(() => Math.random() - 0.5),
             correctAnswer: decodeHTML(result.correct_answer),
