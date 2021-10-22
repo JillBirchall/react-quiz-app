@@ -24,7 +24,7 @@ export const NumberOfQuestionsSelect = ({
         //check if res.status === 200 and if not, throw error
       })
       .catch((err) => handleError());
-  }, [categoryId, difficulty]);
+  }, [categoryId, difficulty, handleError]);
 
   function handleSubmit(e) {
     e.preventDefault();

@@ -78,10 +78,6 @@ function App() {
     }
   }
 
-  function toggleLoading(displayLoader) {
-    setIsLoading(displayLoader);
-  }
-
   function getNextQuestion() {
     if (currentQuestionNumber < numberOfQuestions - 1) {
       setCurrentQuestionNumber((prevQuestionNumber) => prevQuestionNumber + 1);

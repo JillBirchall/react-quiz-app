@@ -21,7 +21,7 @@ export const CategorySelect = ({
         //check if res.status === 200 and if not, throw error
       })
       .catch((err) => handleError());
-  }, []);
+  }, [handleError]);
 
   function handleSubmit(e) {
     e.preventDefault();

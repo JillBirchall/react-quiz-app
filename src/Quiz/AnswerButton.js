@@ -14,24 +14,22 @@ export default function AnswerButton({
 
   useEffect(() => {
     if (isQuestionAnswered && isSelectedAnswer && isCorrectAnswer) {
-      setScoreIncrement(getScoreIncrement());
+      setScoreIncrement(() => {
+        let score_increment;
+
+        if (secondsLeft > 10) {
+          score_increment = 30;
+        } else if (secondsLeft > 5) {
+          score_increment = 20;
+        } else {
+          score_increment = 10;
+        }
+
+        return score_increment;
+      });
       scoreIncrementDisplay.current.className = "score-increment";
     }
-  }, []);
-
-  function getScoreIncrement() {
-    let score_increment;
-
-    if (secondsLeft > 10) {
-      score_increment = 30;
-    } else if (secondsLeft > 5) {
-      score_increment = 20;
-    } else {
-      score_increment = 10;
-    }
-
-    return score_increment;
-  }
+  }, [isCorrectAnswer, isQuestionAnswered, isSelectedAnswer, secondsLeft]);
 
   function checkAnswer() {
     if (isQuestionAnswered) return;
