@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import axios from "axios";
 import Loader from "../Loader";
 import { Wrapper, SelectBox } from "./QuizForm.styles";
 import { Button } from "../Button.styles";
@@ -13,14 +14,15 @@ export const CategorySelect = ({
   const difficultySelect = useRef();
 
   useEffect(() => {
-    fetch("https://opentdb.com/api_category.php")
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data.trivia_categories);
+    axios
+      .get("https://opentdb.com/api_category.php")
+      .then((res) => {
+        setCategories(res.data.trivia_categories);
         setIsLoading(false);
-        //check if res.status === 200 and if not, throw error
       })
-      .catch((err) => handleError());
+      .catch((error) => {
+        handleError();
+      });
   }, [handleError]);
 
   function handleSubmit(e) {

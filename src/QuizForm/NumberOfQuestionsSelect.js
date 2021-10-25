@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Loader from "../Loader";
 import { Wrapper, Slider } from "./QuizForm.styles";
 import { Button } from "../Button.styles";
@@ -14,17 +15,24 @@ export const NumberOfQuestionsSelect = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://opentdb.com/api_count.php?category=${categoryId}`)
-      .then((response) => response.json())
-      .then((data) => {
+    axios
+      .get("https://opentdb.com/api_count.php", {
+        params: {
+          category: categoryId,
+        },
+      })
+      .then((res) => {
         let questionsAvailable =
-          data.category_question_count[`total_${difficulty}_question_count`];
+          res.data.category_question_count[
+            `total_${difficulty}_question_count`
+          ];
         setMaxQuestions(questionsAvailable > 50 ? 50 : questionsAvailable);
         setIsLoading(false);
-        //check if res.status === 200 and if not, throw error
       })
-      .catch((err) => handleError());
-  }, [categoryId, difficulty, handleError]);
+      .catch((error) => {
+        handleError();
+      });
+  }, [handleError, categoryId, difficulty]);
 
   function handleSubmit(e) {
     e.preventDefault();
