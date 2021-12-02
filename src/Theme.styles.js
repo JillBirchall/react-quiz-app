@@ -2,14 +2,18 @@ import { ThemeProvider } from "styled-components";
 
 const theme = {
   colours: {
-    headingColour: "rgb(0, 78, 194)",
-    textColour: "rgb(0, 38, 95)",
-    buttonColour: "rgb(153, 0, 255)",
-    secondaryColour: "rgb(66, 188, 245)",
+    backgroundColour: "#011638",
+    headingColour: "#0d21a1",
+    textColour: "#141414",
+    buttonColour: "#0d21a1",
+    secondaryColour: "#eef0f0",
+    hoverButtonColour: "#009ddc",
+    correctAnswerColour: " rgb(0, 172, 9)",
+    incorrectAnswerColour: "rgb(209, 0, 0)",
   },
   fonts: {
-    headingFont: "Comfortaa, cursive",
-    textFont: "Open Sans, sans-serif",
+    primaryFont: "Quicksand, Trebuchet, sans-serif",
+    secondaryFont: "Roboto, sans-serif",
   },
 };
 

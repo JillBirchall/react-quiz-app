@@ -22,11 +22,11 @@ export const Slider = styled.div`
   height: 100%;
 
   .sliderLabel {
-    color: ${(props) => props.theme.colours.textColour};
+    color: ${(props) => props.theme.colours.headingColour};
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.2rem;
     text-align: center;
-    font-family: ${(props) => props.theme.fonts.textFont};
+    font-family: ${(props) => props.theme.fonts.primaryFont};
   }
 
   .slider {
@@ -42,15 +42,16 @@ export const Slider = styled.div`
 
 export const SelectBox = styled.div`
   margin: 30px 0 0 10px;
-  font-family: ${(props) => props.theme.fonts.textFont};
 
   .select-box {
     margin: 0 0 20px 5px;
     font-size: 0.6rem;
+    font-family: ${(props) => props.theme.fonts.secondaryFont};
   }
 
   label {
-    color: ${(props) => props.theme.colours.textColour};
+    color: ${(props) => props.theme.colours.headingColour};
+    font-family: ${(props) => props.theme.fonts.primaryFont};
     font-weight: bold;
     font-size: 0.8rem;
   }
@@ -60,11 +61,11 @@ export const SelectBox = styled.div`
   
     .select-box {
       margin-left: 10px;
-      font-size: 0.8rem;
+      font-size: 1rem;
     }
   
     & label {
       margin-left: 10px;
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
 `;

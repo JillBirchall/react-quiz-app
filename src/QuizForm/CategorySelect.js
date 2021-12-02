@@ -37,9 +37,9 @@ export const CategorySelect = ({
   else {
     return (
       <Wrapper onSubmit={handleSubmit}>
-        <h1 className="title">Quiz</h1>
+        <h1 className="title">Trivia Quiz</h1>
         <SelectBox>
-          <label htmlFor="category">Category:</label>
+          <label htmlFor="category">Select a Category:</label>
           <select id="category" ref={categorySelect} className="select-box">
             {categories.map((category) => {
               return (
@@ -51,7 +51,7 @@ export const CategorySelect = ({
           </select>
         </SelectBox>
         <SelectBox>
-          <label htmlFor="difficulty">Difficulty:</label>
+          <label htmlFor="difficulty">Select a Difficulty:</label>
           <select id="difficulty" ref={difficultySelect} className="select-box">
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>

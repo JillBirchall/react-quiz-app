@@ -18,13 +18,13 @@ export const Wrapper = styled.div`
   }
 
   .question-number {
-    font-family: ${(props) => props.theme.fonts.headingFont};
+    font-family: ${(props) => props.theme.fonts.primaryFont};
     color: ${(props) => props.theme.colours.headingColour};
     font-size: 1rem;
   }
 
   .question {
-    font-family: ${(props) => props.theme.fonts.textFont};
+    font-family: ${(props) => props.theme.fonts.primaryFont};
     color: ${(props) => props.theme.fonts.textColour};
     font-weight: normal;
     font-size: 1rem;
@@ -52,13 +52,3 @@ export const Wrapper = styled.div`
     }
   }
 `;
-
-// @media (min-height: 500px) {
-//   .question {
-//     font-size: 1.5rem;
-//   }
-
-//   .question-number {
-//     font-size: 1.5rem;
-//   }
-// }

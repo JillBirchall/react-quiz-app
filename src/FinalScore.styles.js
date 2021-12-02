@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   width: 100%;
 
   .final-score-text {
-    font-family: ${(props) => props.theme.fonts.headingFont};
+    font-family: ${(props) => props.theme.fonts.primaryFont};
     font-size: 30px;
     color: rgb(0, 38, 95);
     text-align: center;

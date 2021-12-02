@@ -1,13 +1,34 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const blink = (colour1, colour2) =>
+  keyframes`
+{
+  0% {
+    background-color: ${colour2};
+  }
+  50% {
+    background-color: ${colour2};
+  }
+  60% {
+    background-color: ${colour1};
+  }
+  99% {
+    background-color: ${colour1};
+  }
+  100% {
+    background-color: ${colour2};
+  }
+}
+`;
 
 export const AnswerBtn = styled.button`
-  font-family: ${(props) => props.theme.fonts.textFont};
+  font-family: ${(props) => props.theme.fonts.primaryFont};
   background-color: ${(props) =>
     props.questionAnswered
       ? props.correctAnswer
-        ? " rgb(0, 172, 9)"
+        ? props.theme.colours.correctAnswerColour
         : props.selectedAnswer
-        ? " rgb(209, 0, 0)"
+        ? props.theme.colours.incorrectAnswerColour
         : props.theme.colours.buttonColour
       : props.theme.colours.buttonColour};
   border: none;
@@ -15,12 +36,24 @@ export const AnswerBtn = styled.button`
   padding: 5px 50px;
   width: 200px;
   min-height: 40px;
-  border-radius: 10px;
+  border-radius: 9999px;
   color: white;
   cursor: pointer;
   font-size: 0.8rem;
   outline: none;
   position: relative;
+
+  ${(props) =>
+    props.questionAnswered &&
+    props.correctAnswer &&
+    !props.selectedAnswer &&
+    css`
+      animation: ${blink(
+          props.theme.colours.buttonColour,
+          props.theme.colours.correctAnswerColour
+        )}
+        1s infinite;
+    `}
 
   ${(props) =>
     !props.questionAnswered &&
