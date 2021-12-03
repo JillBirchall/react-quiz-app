@@ -23,6 +23,7 @@ export const Wrapper = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5),
       0 6px 20px 0 rgba(156, 156, 156, 0.3);
     position: relative;
+    margin-top: 50px;
   }
 
   .title {

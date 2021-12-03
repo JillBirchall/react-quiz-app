@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 //Components
+import HelpButton from "./HelpButton";
+import Modal from "./Modal";
 import QuizForm from "./QuizForm/QuizForm";
 import QuizQuestion from "./Quiz/QuizQuestion";
 import FinalScore from "./FinalScore";
@@ -22,6 +24,7 @@ function App() {
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState();
   const [numberOfQuestions, setNumberOfQuestions] = useState();
   const [score, setScore] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   //Set the current question number score and isQuizInProgress flag once the questions have been loaded.
   useEffect(() => {
@@ -119,10 +122,16 @@ function App() {
     setIsError(false);
   }
 
+  function toggleModal() {
+    setIsModalOpen(!isModalOpen);
+  }
+
   return (
     <Theme>
       <GlobalStyle />
       <Wrapper>
+        {isModalOpen && <Modal toggleModal={toggleModal} />}
+        <HelpButton toggleModal={toggleModal} />
         <div className="quiz-box">
           {!isQuizInProgress && !isQuizOver && !isLoading && !isError && (
             <QuizForm
