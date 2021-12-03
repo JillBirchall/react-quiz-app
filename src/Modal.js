@@ -19,22 +19,24 @@ export const Modal = ({ toggleModal }) => {
         <h2>How is the score calculated?</h2>
         <p>The points awarded for each correct answer are as follows:</p>
         <table>
-          <tr>
-            <th>Seconds Remaining</th>
-            <th>Score</th>
-          </tr>
-          <tr>
-            <td>11 to 15</td>
-            <td>30 points</td>
-          </tr>
-          <tr>
-            <td>6 to 10</td>
-            <td>20 points</td>
-          </tr>
-          <tr>
-            <td>0 to 5</td>
-            <td>10 points</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Seconds Remaining</th>
+              <th>Score</th>
+            </tr>
+            <tr>
+              <td>11 to 15</td>
+              <td>30 points</td>
+            </tr>
+            <tr>
+              <td>6 to 10</td>
+              <td>20 points</td>
+            </tr>
+            <tr>
+              <td>0 to 5</td>
+              <td>10 points</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </Wrapper>

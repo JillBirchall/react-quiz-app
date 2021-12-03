@@ -14,7 +14,6 @@ export default function QuizForm({ getQuestions, handleError }) {
   }
 
   function startQuiz(numberOfQuestions) {
-    console.log("start quiz called");
     getQuestions(categoryId, difficulty, numberOfQuestions);
   }
 

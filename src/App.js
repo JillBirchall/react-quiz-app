@@ -29,7 +29,6 @@ function App() {
   //Set the current question number score and isQuizInProgress flag once the questions have been loaded.
   useEffect(() => {
     if (questions.length === numberOfQuestions) {
-      console.log("Quiz Started");
       setIsQuizInProgress(true);
       setCurrentQuestionNumber(0);
       resetScore();

@@ -34,7 +34,8 @@ export const Wrapper = styled.div`
 
   @media (min-width: 992px) {
     .quiz-box {
-      min-width: 70%;
+      min-width: initial;
+      width: 70%;
     }
   }
 
