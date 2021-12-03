@@ -45,7 +45,7 @@ export const SelectBox = styled.div`
 
   .select-box {
     margin: 0 0 20px 5px;
-    font-size: 0.6rem;
+    font-size: 12px;
     font-family: ${(props) => props.theme.fonts.secondaryFont};
   }
 
@@ -53,7 +53,7 @@ export const SelectBox = styled.div`
     color: ${(props) => props.theme.colours.headingColour};
     font-family: ${(props) => props.theme.fonts.primaryFont};
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   @media (min-width: 768px) {

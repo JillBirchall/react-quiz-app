@@ -5,7 +5,7 @@ export const Text = styled.p`
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
   font-family: ${(props) => props.theme.fonts.secondaryFont};
-  font-size: 10px;
+  font-size: 12px;
 
   a {
     color: white;
