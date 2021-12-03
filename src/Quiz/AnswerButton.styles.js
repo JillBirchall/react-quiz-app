@@ -24,12 +24,10 @@ const blink = (colour1, colour2) =>
 export const AnswerBtn = styled.button`
   font-family: ${(props) => props.theme.fonts.primaryFont};
   background-color: ${(props) =>
-    props.questionAnswered
+    props.questionAnswered && props.selectedAnswer
       ? props.correctAnswer
         ? props.theme.colours.correctAnswerColour
-        : props.selectedAnswer
-        ? props.theme.colours.incorrectAnswerColour
-        : props.theme.colours.buttonColour
+        : props.theme.colours.incorrectAnswerColour
       : props.theme.colours.buttonColour};
   border: none;
   margin: 10px;
