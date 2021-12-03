@@ -55,14 +55,13 @@ export const AnswerBtn = styled.button`
 
   ${(props) =>
     !props.questionAnswered &&
-    `
-  &:hover {
-    cursor: pointer;
-    background-color: white;
-    color: ${props.theme.colours.buttonColour};
-    border: 1px solid ${props.theme.colours.buttonColour};
-  }
-  
+    `@media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+        background-color:  ${props.theme.colours.hoverButtonColour};
+        color: white;
+      }
+    }
   `}
 
   .score-increment {

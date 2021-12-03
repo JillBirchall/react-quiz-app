@@ -14,9 +14,11 @@ export const Button = styled.button`
   top: 10px;
   right: 20px;
 
-  &:hover {
-    background-color: ${(props) => props.theme.colours.hoverButtonColour};
-    color: ${(props) => props.theme.colours.secondaryColour};
-    cursor: pointer;
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${(props) => props.theme.colours.hoverButtonColour};
+      color: ${(props) => props.theme.colours.secondaryColour};
+      cursor: pointer;
+    }
   }
 `;

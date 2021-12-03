@@ -13,9 +13,11 @@ export const Button = styled.button`
   position: absolute;
   bottom: 20px;
 
-  &:hover {
-    cursor: pointer;
-    background-color: ${(props) => props.theme.colours.hoverButtonColour};
-    color: ${(props) => props.theme.colours.secondaryColour};
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      background-color: ${(props) => props.theme.colours.hoverButtonColour};
+      color: ${(props) => props.theme.colours.secondaryColour};
+    }
   }
 `;
