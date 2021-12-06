@@ -10,11 +10,14 @@ export const Modal = ({ toggleModal }) => {
         </span>
         <h1>How to Play</h1>
         <p>
-          There will be 20 multiple choice questions, based on your chosen
-          category and difficulty. There will be 4 possible answers displayed
-          for each question. You will have 15 seconds to select an answer. If
-          you do not select an answer within the time limit, the next question
-          will be displayed.
+          The quiz is a mixture of multiple choice and true/false questions,
+          based on your chosen category and difficulty. You are able to select
+          the number of questions in the quiz, and the maximum number of
+          questions is 50, or the total number of questions available for your
+          chosen category/difficulty if lower. For the multiple choice questions
+          4 possible answers will be displayed. You will have 15 seconds to
+          select an answer. If you do not select an answer within the time
+          limit, the next question will be displayed.
         </p>
         <h2>How is the score calculated?</h2>
         <p>The points awarded for each correct answer are as follows:</p>
