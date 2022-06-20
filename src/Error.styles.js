@@ -10,20 +10,20 @@ export const Wrapper = styled.div`
   width: 100%;
 
   h1 {
-    font-family: ${(props) => props.theme.fonts.headingFont};
+    font-family: ${(props) => props.theme.fonts.primaryFont};
     color: ${(props) => props.theme.colours.headingColour};
     font-size: 1.8rem;
   }
 
   p {
-    font-family: ${(props) => props.theme.fonts.textFont};
+    font-family: ${(props) => props.theme.fonts.secondaryFont};
     color: ${(props) => props.theme.colours.textColour};
     text-align: center;
   }
 `;
 
 export const HomeButton = styled(Button)`
-  font-family: ${(props) => props.theme.fonts.textFont};
+  font-family: ${(props) => props.theme.fonts.secondaryFont};
   align-self: center;
   background-color: ${(props) => props.theme.colours.buttonColour};
   color: white;
